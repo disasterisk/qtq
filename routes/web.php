@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,11 +11,19 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/', function(){
+  if (Auth::check()){
+    return redirect('/home');
+  }else{
+    return view('welcome');
+  }
+});
+/*
 Route::get('/', function () {
   $links = \App\Link::all();
   return view('welcome', ['links' => $links]);
 });
+*/
 
 Auth::routes();
 

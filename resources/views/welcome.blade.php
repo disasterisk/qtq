@@ -83,9 +83,9 @@
                 </div>
 
                 <div class="links">
-                    @foreach ($links as $link)
-                      <a href="{{$link->url}}">{{$link->title}}</a>
-                    @endforeach
+                  <a href="{{route('login')}}">Login</a>
+                  <a href="{{route('register')}}">Register</a>
+                  <a href="{{route('home')}}">Home</a>
                 </div>
             </div>
         </div>

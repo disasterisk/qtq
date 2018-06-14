@@ -14,7 +14,12 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    @foreach ($questions as $question)
+                      <div>
+                        <h3>{{$question->title}}</h3>
+                        <p>{{$question->text}}</p>
+                      </div>
+                      @endforeach
                 </div>
             </div>
         </div>

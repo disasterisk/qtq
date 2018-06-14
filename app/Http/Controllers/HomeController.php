@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $questions = \App\Question::all();
+        return view('home', ['questions' => $questions]);
     }
 }
