@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,3 +19,19 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/submit', function(){
+  return view('submit');
+});
+Route::post('/submit', function(Request $request) {
+  $data = $request->validate([
+    'title' => 'required|max:50',
+    'text' => 'required|max:1800'
+  ]);
+  $question = new App\Question;
+  $question->asker_id = $request->user()->id;
+  $question->title = $data['title'];
+  $question->text = $data['text'];
+
+  $question->save();
+  return redirect('/');
+});
