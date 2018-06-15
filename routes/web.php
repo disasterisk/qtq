@@ -29,9 +29,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/submit', function(){
-  return view('submit');
+  if(Auth::check()){
+    return view('submit');
+  }else{
+    return redirect('/');
+  }
 });
 Route::post('/submit', function(Request $request) {
+
   $data = $request->validate([
     'title' => 'required|max:50',
     'text' => 'required|max:1800'
@@ -44,3 +49,7 @@ Route::post('/submit', function(Request $request) {
   $question->save();
   return redirect('/');
 });
+
+Route::get('/question/{id}', 'QuestionController@show');
+Route::get('/question/{id}/reply', 'ResponseController@show');
+Route::post('/question/{id}/reply', 'ResponseController@post');

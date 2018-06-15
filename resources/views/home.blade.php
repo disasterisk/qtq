@@ -15,10 +15,15 @@
                     @endif
 
                     @foreach ($questions as $question)
-                      <div>
-                        <h3>{{$question->title}}</h3>
-                        <p>{{$question->text}}</p>
-                      </div>
+                      <div class="card border-primary mb-3" style="max-width: 50rem;">
+                        <a href="/question/{{$question->id}}">
+                          <div class="card-header">{{$question->updated_at}}</div>
+                        </a>
+                          <div class="card-body">
+                            <h4 class="card-title">{{$question->title}}</h4>
+                            <p class="card-text">{{$question->text}}</p>
+                          </div>
+                        </div>
                       @endforeach
                 </div>
             </div>
