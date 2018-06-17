@@ -13,7 +13,12 @@
         <hr class="my-4">
         @foreach ($responses as $response)
             <div class="card text-white bg-secondary mb-3" style="max-width: 50rem;">
-              <div class="card-header">{{$response->updated_at}}</div>
+              <div class="card-header">
+                {{$response->updated_at}}
+                <div style="float:right;">
+                  <a href="/user/{{$response->respondent_id}}" style="color:white;text-decoration:underline">{{$response->respondent_id}}</a>
+                </div>
+              </div>
               <div class="card-body">
                 <p class="card-text">{{$response->text}}</p>
               </div>
