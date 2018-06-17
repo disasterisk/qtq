@@ -5,7 +5,7 @@
   <p class="lead">{{$question->text}}</p>
   </div>
   <div class="row justify-content-center">
-    <form action="/question/{{$question->id}}/reply" method="post">
+    <form action="/questions/{{$question->id}}/reply" method="post">
       @if ($errors->any())
         <div class="alert alert-danger" role="alert">
           Please fix the following errors

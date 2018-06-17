@@ -28,6 +28,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/home', 'HomeController@post');
 Route::get('/submit', function(){
   if(Auth::check()){
     return view('submit');
@@ -50,6 +51,12 @@ Route::post('/submit', function(Request $request) {
   return redirect('/');
 });
 
-Route::get('/question/{id}', 'QuestionController@show');
-Route::get('/question/{id}/reply', 'ResponseController@show');
-Route::post('/question/{id}/reply', 'ResponseController@post');
+Route::get('/questions/{id}', 'QuestionController@show');
+Route::get('/questions/{id}/reply', 'ResponseController@show');
+Route::post('/questions/{id}/reply', 'ResponseController@post');
+Route::get('/user/{id}', 'UserController@show');
+Route::post('/user/{id}', 'UserController@post');
+Route::get('/questions', function(){
+  $questions = \App\Question::all();
+  return view('questions', ['questions' => $questions]);
+});

@@ -25,6 +25,6 @@ class ResponseController extends Controller{
       $response->text = $request->text;
 
       $response->save();
-      return redirect("/question/{$id}");
+      return redirect("/questions/{$id}");
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -23,7 +24,20 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $questions = \App\Question::all();
-        return view('home', ['questions' => $questions]);
+      $user = Auth::user()->id;
+      $questions = \App\Question::where('asker_id', $user)->get();
+      $friends = [];
+      $friendRequests = [];
+
+      $friends = \App\Relationship::where(function($query){
+        $user = Auth::user()->id;
+        $query->where('user1_id', $user)
+          ->orWhere('user2_id', $user);
+      })->where('status', 1)->get();
+      $friendRequests = \App\Relationship::where([
+        ['action_user_id', '=', $user],
+        ['status', '=', '0' ]
+      ])->get();
+      return view('home', ['questions' => $questions, 'friends' => $friends, 'friendRequests' => $friendRequests]);
     }
 }
