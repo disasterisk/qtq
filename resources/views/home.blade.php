@@ -19,7 +19,7 @@
                         <button type="button" class="btn btn-primary">Ask question!</button>
                       </a>
                       <a href="/questions">
-                        <button type="btn btn-primary">View all questions</button>
+                        <button type="button" class="btn btn-primary">View all questions</button>
                       </a>
                     </div>
                     <hr class="my-4">
