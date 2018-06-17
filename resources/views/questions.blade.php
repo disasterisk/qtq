@@ -1,4 +1,4 @@
-@extends(layouts.app)
+@extends('layouts.app')
 @section('content')
   @foreach ($questions as $question)
     <div class="card border-primary mb-3" style="max-width: 50rem;">
